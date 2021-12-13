@@ -1,0 +1,31 @@
+---
+title: "RStudio_&_SQL"
+author: "Ross_Pingatore"
+date: "12/13/2021"
+output: pdf_document
+---
+
+```{r}
+library(dplyr)
+library(dbplyr)
+library(tidyverse)
+```
+
+
+```{r}
+conn <- src_memdb() #Create a SQLite database from memory 
+sqlite <- conn$con #taking the SQLite object contained within the conn object in memory 
+copy_to(conn, iris, overwrite = T) #copies the built-in iris data-set to the memory object 
+```
+
+```{sql connection  = sqlite}
+select * from iris limit 5
+```
+
+
+```{sql connection  = sqlite}
+select * from iris where (Species) = 'setosa' ; 
+
+```
+
+
